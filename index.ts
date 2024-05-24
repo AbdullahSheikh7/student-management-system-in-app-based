@@ -327,13 +327,14 @@ const showStatus = async () => {
   console.log(`${studentsTable.toString()}\n`);
 };
 
+figlet("Students Management System", (error, data) => {
+  console.log(gradientString.pastel.multiline(data));
+});
+
 const main = async () => {
   let exit: boolean = false;
 
   // Project and Developer Introduction
-  figlet("Students Management System", (error, data) => {
-    console.log(gradientString.pastel.multiline(data));
-  });
   await sleep(1000);
 
   let developer = chalkAnimation.rainbow("Made by Abdullah");
