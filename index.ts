@@ -18,7 +18,28 @@ let courses: string[] = [
   "Islamiat",
   "Pakistan Studies",
 ];
-let students: any = {};
+
+type student = {
+  [id: string]: {
+    name: string;
+    class: number;
+    rollNo: string;
+    courses: string[];
+    fees: number;
+    feePaid: boolean;
+  };
+};
+
+let students: student = {
+  "00000": {
+    name: "Abdullah",
+    class: 11,
+    rollNo: "36156",
+    courses: ["English", "Math"],
+    fees: 200,
+    feePaid: true
+  }
+};
 
 // Student Class
 class Student {
@@ -244,12 +265,12 @@ const payTuitionFees = async () => {
   let studentsNames = Object.keys(students).map((e) => students[e].name);
 
   if (Object.keys(students).length == 0) {
-    spinner.error({text : "No students found\n"});
+    spinner.error({ text: "No students found\n" });
     return balance;
   }
-  
+
   if (feePaidFalseStudentsNames.length == 0) {
-    spinner.error({text : "All students fees are paid\n"});
+    spinner.error({ text: "All students fees are paid\n" });
     return balance;
   }
 
@@ -310,10 +331,10 @@ const showStatus = async () => {
     studentsTable.push([
       chalk.yellow(studentsIds[i]),
       students[studentsIds[i]].name,
-      students[studentsIds[i]].class,
+      (students[studentsIds[i]].class).toString(),
       students[studentsIds[i]].rollNo,
       students[studentsIds[i]].courses.join(", "),
-      students[studentsIds[i]].fees,
+      (students[studentsIds[i]].fees).toString(),
       students[studentsIds[i]].feePaid
         ? chalk.green("Paid")
         : chalk.red("Not paid"),

@@ -16,7 +16,16 @@ let courses = [
     "Islamiat",
     "Pakistan Studies",
 ];
-let students = {};
+let students = {
+    "00000": {
+        name: "Abdullah",
+        class: 11,
+        rollNo: "36156",
+        courses: ["English", "Math"],
+        fees: 200,
+        feePaid: true
+    }
+};
 // Student Class
 class Student {
     name;
@@ -238,10 +247,10 @@ const showStatus = async () => {
         studentsTable.push([
             chalk.yellow(studentsIds[i]),
             students[studentsIds[i]].name,
-            students[studentsIds[i]].class,
+            (students[studentsIds[i]].class).toString(),
             students[studentsIds[i]].rollNo,
             students[studentsIds[i]].courses.join(", "),
-            students[studentsIds[i]].fees,
+            (students[studentsIds[i]].fees).toString(),
             students[studentsIds[i]].feePaid
                 ? chalk.green("Paid")
                 : chalk.red("Not paid"),
@@ -252,12 +261,12 @@ const showStatus = async () => {
     spinner.success({ text: "Students status" });
     console.log(`${studentsTable.toString()}\n`);
 };
+figlet("Students Management System", (error, data) => {
+    console.log(gradientString.pastel.multiline(data));
+});
 const main = async () => {
     let exit = false;
     // Project and Developer Introduction
-    figlet("Students Management System", (error, data) => {
-        console.log(gradientString.pastel.multiline(data));
-    });
     await sleep(1000);
     let developer = chalkAnimation.rainbow("Made by Abdullah");
     await sleep(1000);
